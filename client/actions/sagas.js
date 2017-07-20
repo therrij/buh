@@ -1,13 +1,14 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import * as TodoActions from './todos'
 import Api from '../api'
 
 // worker Saga: will be fired on TODO_FETCH_REQUESTED actions
 function* fetchTodos(action) {
    try {
       const todos = yield call(Api.fetchTodos);
-      yield put({type: "TODO_FETCH_SUCCEEDED", todos });
+      yield put({...TodoActions.todoFetchSucceeded, todos});
    } catch (e) {
-      yield put({type: "TODO_FETCH_FAILED", message: e.message});
+      yield put({...TodoActions.todoFetchFailed, message: e.message});
    }
 }
 
@@ -22,12 +23,12 @@ function* fetchTodos(action) {
 /*
   Alternatively you may use takeLatest.
 
-  Does not allow concurrent fetches of user. If "TODO_FETCH_REQUESTED" gets
+  Does not allow concurrent fetches. If "TODO_FETCH_REQUESTED" gets
   dispatched while a fetch is already pending, that pending fetch is cancelled
   and only the latest one will be run.
 */
 function* mySaga() {
-  yield takeLatest("TODO_FETCH_REQUESTED", fetchTodos);
+  yield takeLatest(TodoActions.fetchTodos.type, fetchTodos);
 }
 
 export default mySaga;

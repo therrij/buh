@@ -23,12 +23,12 @@ export default function configure(initialState) {
 
   sagaMiddleware.run(mySaga)
 
-  if (module.hot) {
-    module.hot.accept('../reducers', () => {
-      const nextReducer = require('../reducers')
-      store.replaceReducer(nextReducer)
-    })
-  }
+  // if (module.hot) {
+  //   module.hot.accept('../reducers', () => {
+  //     const nextReducer = require('../reducers')
+  //     store.replaceReducer(nextReducer)
+  //   })
+  // }
 
   return store
 }

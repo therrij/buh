@@ -12,6 +12,9 @@ export const fetchTodos = {
     type: 'TODO_FETCH_REQUESTED'
 }
 
+export const fetchTodo = {
+    type: 'TODO_SINGLE_FETCH_REQUESTED'
+}
 
 export const todoFetchSucceeded = {
     type: 'TODO_FETCH_SUCCEEDED'

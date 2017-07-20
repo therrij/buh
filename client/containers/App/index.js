@@ -12,7 +12,7 @@ class App extends Component {
     const { todos, actions, children } = this.props
     return (
       <div className={style.normal}>
-        <Header fetchTodos={actions.fetchTodos} addTodo={actions.addTodo} />
+        <Header addTodo={actions.addTodo} />
         <MainSection todos={todos} actions={actions} />
         {children}
       </div>
